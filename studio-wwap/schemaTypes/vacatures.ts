@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity'
+import { departments } from './departments'
 
 export const vacancy = defineType({
   name: 'vacancy',
@@ -48,12 +49,7 @@ export const vacancy = defineType({
       title: 'Afdeling',
       type: 'string',
       options: {
-        list: [
-          { title: 'Directie', value: '1_directie' },
-          { title: 'Management', value: '2_management' },
-          { title: 'Administratie', value: '3_administratie' },
-          { title: 'Begeleiding', value: '4_begeleiding' },
-        ],
+        list: departments,
         layout: 'radio',
       },
       validation: (rule) => rule.required(),

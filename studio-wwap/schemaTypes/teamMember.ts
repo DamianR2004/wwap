@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity'
+import { departments } from './departments'
 
 export const teamMember = defineType({
   name: 'teamMember',
@@ -32,12 +33,7 @@ export const teamMember = defineType({
       title: 'Afdeling',
       type: 'string',
       options: {
-        list: [
-          { title: 'Directie', value: '1_directie' },
-          { title: 'Management', value: '2_management' },
-          { title: 'Administratie', value: '3_administratie' },
-          { title: 'Begeleiding', value: '4_begeleiding' },
-        ],
+        list: departments,
         layout: 'radio',
       },
       validation: (rule) => rule.required(),
@@ -46,8 +42,7 @@ export const teamMember = defineType({
       name: 'email',
       title: 'E-mailadres',
       type: 'string',
-      // Optioneel: je kunt hier later nog e-mail validatie toevoegen
-      // validation: (Rule) => Rule.email(),
+      validation: (rule) => rule.email().error('Vul een geldig e-mailadres in'),
     }),
     defineField({
       name: 'phone',
@@ -61,12 +56,6 @@ export const teamMember = defineType({
       options: {
         hotspot: true,
       },
-    }),
-    defineField({
-      name: 'bio',
-      title: 'Over deze persoon',
-      type: 'array',
-      of: [{ type: 'block' }],
     }),
   ],
   preview: {
