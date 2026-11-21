@@ -43,6 +43,18 @@ export const teamMember = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'email',
+      title: 'E-mailadres',
+      type: 'string',
+      // Optioneel: je kunt hier later nog e-mail validatie toevoegen
+      // validation: (Rule) => Rule.email(),
+    }),
+    defineField({
+      name: 'phone',
+      title: 'Telefoonnummer',
+      type: 'string',
+    }),
+    defineField({
       name: 'image',
       title: 'Foto',
       type: 'image',

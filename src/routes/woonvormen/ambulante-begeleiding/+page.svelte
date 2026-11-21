@@ -1,4 +1,8 @@
-<main>
+<script>
+  import Foto from '$lib/components/atoms/Foto.svelte';
+</script>
+
+<main id="inhoud">
 <section>
   <h1>Ambulante begeleiding</h1>
 
@@ -9,6 +13,8 @@
     ambulant begeleider komt naar je toe en helpt je om weer grip te krijgen op
     wat er speelt.
   </p>
+
+  <Foto naam="agenda-notitieboek" voorrang />
 </section>
 
 <section>
@@ -63,3 +69,15 @@
   <a href="/contact">Neem contact op</a>
 </section>
 </main>
+
+<style>
+  /* Lijn tussen de secties (vanaf 'Hoe wij werken'), met lucht tot de kop eronder */
+  main > section:nth-child(n + 3) {
+    border-top: 1px solid var(--color-border);
+  }
+
+  main > section:nth-child(n + 3)::before {
+    content: '';
+    height: 1.5rem;
+  }
+</style>

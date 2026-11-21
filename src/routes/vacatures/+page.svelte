@@ -1,6 +1,12 @@
-<main>
+<script>
+  import Foto from '$lib/components/atoms/Foto.svelte';
+</script>
+
+<main id="inhoud">
 <section>
   <h1>Vacatures</h1>
+
+  <Foto naam="team-aan-tafel" voorrang />
 </section>
 
 <section>
@@ -20,7 +26,7 @@
 
   <p>
     WWAP is een zorgorganisatie in de regio Ede en Wageningen. We bieden
-    Beschermd Wonen, Beschermd Thuis en ambulante begeleiding. Onze teams zijn
+    beschermd wonen, beschermd thuis en ambulante begeleiding. Onze teams zijn
     overzichtelijk en de lijnen zijn kort. Collega’s kennen elkaar, overleggen
     gemakkelijk en dragen samen verantwoordelijkheid voor goede begeleiding.
   </p>
@@ -74,7 +80,7 @@
 </section>
 
 <section>
-  <h3>BEKIJK ONZE VACATURES</h3>
+  <h2>Bekijk onze vacatures</h2>
 
   <p>
     Wil je weten welke functies op dit moment beschikbaar zijn? Bekijk onze
@@ -82,7 +88,7 @@
     bij WWAP past? Dan kun je ook <a href="/contact">contact</a> met ons opnemen.
   </p>
 
-  <a href="/">Vacatures inzien</a>
+  <!-- TODO: link naar de vacaturelijst zodra die er is (was href="/") -->
 </section>
 </main>
 

@@ -1,4 +1,8 @@
-<main>
+<script>
+  import Foto from '$lib/components/atoms/Foto.svelte';
+</script>
+
+<main id="inhoud">
 <section>
   <h1>Partners</h1>
 
@@ -8,6 +12,8 @@
     organisaties. We delen wat nodig is, stemmen verantwoordelijkheden af en
     houden steeds het belang van de jongere voor ogen.
   </p>
+
+  <Foto naam="handen-samen" voorrang />
 </section>
 
 <section>

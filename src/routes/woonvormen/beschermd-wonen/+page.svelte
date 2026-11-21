@@ -1,4 +1,8 @@
-<main>
+<script>
+  import Foto from '$lib/components/atoms/Foto.svelte';
+</script>
+
+<main id="inhoud">
 <section>
   <h1>Beschermd wonen</h1>
 
@@ -8,6 +12,8 @@
     andere jongeren op een kleinschalige locatie. Er is dag en nacht iemand in
     de buurt om je te ondersteunen.
   </p>
+
+  <Foto naam="kamer-met-fauteuil" voorrang />
 </section>
 
 <section>
@@ -75,3 +81,15 @@
   </div>
 </section>
 </main>
+
+<style>
+  /* Lijn tussen de secties (vanaf 'Hoe wij werken'), met lucht tot de kop eronder */
+  main > section:nth-child(n + 3) {
+    border-top: 1px solid var(--color-border);
+  }
+
+  main > section:nth-child(n + 3)::before {
+    content: '';
+    height: 1.5rem;
+  }
+</style>

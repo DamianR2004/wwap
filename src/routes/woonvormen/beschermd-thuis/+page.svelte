@@ -1,20 +1,26 @@
-<main>
+<script>
+  import Foto from '$lib/components/atoms/Foto.svelte';
+</script>
+
+<main id="inhoud">
 <section>
-  <h1>Begeleid wonen</h1>
+  <h1>Beschermd thuis</h1>
 
   <p>
     Ben je toe aan een eigen woonruimte, maar wil je nog niet overal alleen voor
-    staan? Bij begeleid wonen regel je steeds meer zelf. Je begeleider denkt met
+    staan? Bij beschermd thuis regel je steeds meer zelf. Je begeleider denkt met
     je mee, helpt wanneer je vastloopt en geeft je de ruimte om dingen op jouw
     manier te leren.
   </p>
+
+  <Foto naam="woonkamer-bank" voorrang />
 </section>
 
 <section>
   <h2>Voor wie</h2>
 
   <p>
-    Begeleid wonen is bedoeld voor jongeren vanaf 18 jaar die toe zijn aan meer
+    Beschermd thuis is bedoeld voor jongeren vanaf 18 jaar die toe zijn aan meer
     zelfstandigheid, maar nog regelmatig ondersteuning nodig hebben.
     Bijvoorbeeld om overzicht te houden, financiële zaken te regelen, een
     dagritme vast te houden of een eigen netwerk op te bouwen.
@@ -54,7 +60,7 @@
   <h2>Aanmelden</h2>
 
   <p>
-    Voor begeleid wonen kun je rechtstreeks contact met ons opnemen. Aanmelden
+    Voor beschermd thuis kun je rechtstreeks contact met ons opnemen. Aanmelden
     via een gemeente of verwijzer kan ook.
   </p>
 
@@ -64,3 +70,15 @@
   </div>
 </section>
 </main>
+
+<style>
+  /* Lijn tussen de secties (vanaf 'Hoe wij werken'), met lucht tot de kop eronder */
+  main > section:nth-child(n + 3) {
+    border-top: 1px solid var(--color-border);
+  }
+
+  main > section:nth-child(n + 3)::before {
+    content: '';
+    height: 1.5rem;
+  }
+</style>

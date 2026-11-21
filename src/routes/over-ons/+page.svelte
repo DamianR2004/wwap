@@ -1,4 +1,8 @@
-<main>
+<script>
+  import Foto from '$lib/components/atoms/Foto.svelte';
+</script>
+
+<main id="inhoud">
 <section>
   <h1>Over ons</h1>
 
@@ -8,6 +12,8 @@
     we daarom met kennismaken: wie ben je, wat is belangrijk voor je en wat heb
     jij nodig om verder te komen?
   </p>
+
+  <Foto naam="lopen-naar-het-licht" voorrang />
 </section>
 
 <section>

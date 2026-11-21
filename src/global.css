@@ -41,12 +41,12 @@
   }
 }
 
-html {
-  min-width: 375px;
-}
-
 body {
+  /* Footer altijd onderaan, ook bij korte pagina's */
+  display: flex;
+  flex-direction: column;
   min-height: 100dvh;
+  overflow-wrap: break-word;
   font-family: 'Atkinson Hyperlegible', sans-serif;
   font-size: 1.0625rem;
   line-height: 1.6;
@@ -55,9 +55,47 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Ruimte komt uit grid-tracks en gap, niet uit padding/margin */
 main {
-  width: 100%;
-  padding: 5%;
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr min(90%, 80rem) 1fr;
+  align-content: start;
+  row-gap: clamp(3rem, 2rem + 4vw, 6rem);
+}
+
+/* Lege items boven en onder: de row-gap geeft zo ruimte aan de randen */
+main::before,
+main::after {
+  content: '';
+}
+
+main > *,
+main::before,
+main::after {
+  grid-column: 2;
+}
+
+main section {
+  display: grid;
+  justify-items: start;
+  gap: 1rem;
+}
+
+main section:has(> section) {
+  gap: 2.5rem;
+}
+
+main ul,
+main ol {
+  display: grid;
+  gap: 0.75rem;
+}
+
+/* Prettige regellengte op brede schermen */
+main p,
+main li {
+  max-width: 70ch;
 }
 
 h1,
@@ -69,18 +107,43 @@ h4 {
   line-height: 1.2;
   color: var(--color-petrol);
   text-wrap: balance;
-  overflow-wrap: break-word;
-  margin-bottom: 0.6em;
+  hyphens: auto;
+}
+
+/*
+  Intro met foto (eerste sectie met een <picture>): vanaf laptop tekst links,
+  foto rechts. De lege ::before/::after-rijen (1fr) centreren de tekst verticaal
+  naast de foto; de foto beslaat alle rijen.
+*/
+@media (min-width: 64rem) {
+  main > section:first-child:has(> picture) {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr auto auto 1fr;
+    column-gap: 4rem;
+  }
+
+  main > section:first-child:has(> picture)::before,
+  main > section:first-child:has(> picture)::after {
+    content: '';
+  }
+
+  main > section:first-child:has(> picture) > *,
+  main > section:first-child:has(> picture)::before,
+  main > section:first-child:has(> picture)::after {
+    grid-column: 1;
+  }
+
+  main > section:first-child:has(> picture) > picture {
+    grid-column: 2;
+    grid-row: 1 / -1;
+    align-self: center;
+  }
 }
 
 h1 { font-size: clamp(2rem, 1.65rem + 1.5vw, 3rem); }
 h2 { font-size: clamp(1.5rem, 1.25rem + 1.1vw, 2.25rem); }
 h3 { font-size: clamp(1.25rem, 1.1rem + 0.7vw, 1.75rem); }
 
-p {
-  overflow-wrap: break-word;
-  margin-bottom: 1em;
-}
 
 img,
 svg {
@@ -102,4 +165,27 @@ a:hover {
 :focus-visible {
   outline: 3px solid var(--color-petrol);
   outline-offset: 3px;
+}
+
+.visually-hidden {
+  border: 0;
+  clip-path: inset(50%);
+  height: 1px;
+  margin: 0;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+/* Verborgen tot focus (o.a. skiplink) */
+.visually-hidden-focusable:not(:focus):not(:active) {
+  border: 0;
+  clip-path: inset(50%);
+  height: 1px;
+  margin: 0;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
 }

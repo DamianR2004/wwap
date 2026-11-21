@@ -1,4 +1,4 @@
-<main>
+<main id="inhoud">
 <section>
   <h1>Klachten</h1>
   <p>

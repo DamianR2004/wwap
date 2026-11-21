@@ -4,6 +4,8 @@
   import { page } from '$app/state';
   import gsap from 'gsap';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  import Header from '$lib/components/organims/Header.svelte';
+  import Footer from '$lib/components/organims/Footer.svelte';
 
   let { children } = $props();
 
@@ -19,9 +21,9 @@
       
       sections.forEach((section) => {
         gsap.from(section, {
-          y: 24,
+          y: 16,
           opacity: 0,
-          duration: 1.2,
+          duration: 0.6,
           ease: 'power3.out',
           clearProps: 'all',
           scrollTrigger: {
@@ -39,11 +41,11 @@
         
         if (listItems.length > 0) {
           gsap.from(listItems, {
-            y: 24,
+            y: 16,
             opacity: 0,
-            duration: 1,
+            duration: 0.5,
             ease: 'power3.out',
-            stagger: 0.2,
+            stagger: 0.08,
             clearProps: 'all',
             scrollTrigger: {
               trigger: list,
@@ -65,4 +67,10 @@
   <link rel="icon" href={favicon} />
 </svelte:head>
 
-  {@render children()}
+{#key page.url.pathname}
+  <Header />
+{/key}
+
+{@render children()}
+
+<Footer />
