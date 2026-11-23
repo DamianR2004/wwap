@@ -1,6 +1,6 @@
 <script>
   import { page } from '$app/state';
-  import logo from '$lib/assets/logo-wwap.png';
+  import logo from '$lib/assets/logo-wwap.svg';
 
   const menu = [
     {
@@ -38,7 +38,7 @@
 
   <nav aria-label="Hoofdmenu">
     <a href="/">
-      <img src={logo} alt="WWAP, naar de homepage" width="220" height="124" />
+      <img src={logo} alt="WWAP, naar de homepage" width="164" height="100" />
     </a>
 
     <button type="button" aria-expanded={mobileOpen} onclick={() => (mobileOpen = !mobileOpen)}>
@@ -95,8 +95,11 @@
     a[href='/contact']            contactknop
   */
 
+  /* Sticky: blijft bovenin staan tijdens scrollen */
   header {
-    position: relative;
+    position: sticky;
+    inset-block-start: 0;
+    z-index: 20;
     display: grid;
     grid-template-columns: 1fr min(90%, 80rem) 1fr;
     grid-template-rows: 1rem auto 1rem;
@@ -149,8 +152,8 @@
   }
 
   svg {
-    width: 1.25em;
-    height: 1.25em;
+    width: 1.5em;
+    height: 1.5em;
     fill: none;
     stroke: currentColor;
     stroke-width: 2;
@@ -185,7 +188,7 @@
   /* Logo */
   nav > a img {
     width: auto;
-    height: 3.5rem;
+    height: 4rem;
   }
 
   /* Hamburger: 44px raakvlak zonder padding */
@@ -208,6 +211,15 @@
 
   nav > button[aria-expanded='true'] + ul {
     display: grid;
+  }
+
+  /* Open mobiel menu langer dan het scherm: binnen de header scrollen */
+  @media (max-width: 63.99rem) {
+    header:has(nav > button[aria-expanded='true']) {
+      max-height: 100dvh;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+    }
   }
 
   /* Dropdownknop */
@@ -272,7 +284,7 @@
     }
 
     nav > a img {
-      height: 4.5rem;
+      height: 5rem;
     }
 
     nav > button {

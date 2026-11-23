@@ -41,6 +41,17 @@
   }
 }
 
+/* Ankerlinks (zoals de skiplink naar #inhoud) niet onder de sticky header laten vallen */
+html {
+  scroll-padding-block-start: 6.5rem;
+}
+
+@media (min-width: 64rem) {
+  html {
+    scroll-padding-block-start: 8rem;
+  }
+}
+
 body {
   /* Footer altijd onderaan, ook bij korte pagina's */
   display: flex;
