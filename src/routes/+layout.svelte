@@ -9,10 +9,11 @@
 
   let { children } = $props();
 
-  gsap.registerPlugin(ScrollTrigger);
-
   $effect(() => {
     page.url.pathname;
+
+    // Alleen in de browser registreren: ScrollTrigger heeft window nodig ($effect draait niet op de server)
+    gsap.registerPlugin(ScrollTrigger);
 
     const mm = gsap.matchMedia();
 

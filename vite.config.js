@@ -15,5 +15,11 @@ export default defineConfig({
 			// See https://svelte.dev/docs/kit/adapters for more information about adapters.
 			adapter: adapter()
 		})
-	]
+	],
+
+	// gsap meebundelen voor SSR: in pure Node ESM (Vercel) is 'gsap/ScrollTrigger'
+	// CommonJS en vindt Node de named export niet, waardoor elke pagina een 500 gaf
+	ssr: {
+		noExternal: ['gsap']
+	}
 });
