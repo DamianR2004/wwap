@@ -33,7 +33,9 @@
 <section>
   <h2>Openstaande vacatures</h2>
 
-  {#if data.vacatures.length}
+  {#if data.onbereikbaar}
+    <p>De vacatures kunnen op dit moment niet worden geladen. Probeer het later opnieuw.</p>
+  {:else if data.vacatures.length}
     <ul>
       {#each data.vacatures as vacature (vacature.slug)}
         <li>

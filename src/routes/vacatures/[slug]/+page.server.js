@@ -2,8 +2,11 @@ import { error } from '@sveltejs/kit';
 import { sanity, afdelingen, schoon } from '$lib/server/sanity';
 
 export async function load({ params }) {
-  const vacature = await sanity.fetch(
-    `*[_type == "vacancy" && isActive == true && slug.current == $slug][0] {
+  // Sanity onbereikbaar: 503 (tijdelijk) i.p.v. een onverwachte 500
+  let vacature;
+  try {
+    vacature = await sanity.fetch(
+      `*[_type == "vacancy" && isActive == true && slug.current == $slug][0] {
       title,
       hours,
       location,
@@ -11,8 +14,12 @@ export async function load({ params }) {
       isInternship,
       description
     }`,
-    { slug: params.slug }
-  );
+      { slug: params.slug }
+    );
+  } catch (fout) {
+    console.error('Vacature ophalen uit Sanity mislukt:', fout);
+    error(503, 'De vacature kan nu niet worden geladen. Probeer het later opnieuw.');
+  }
 
   if (!vacature) {
     error(404, 'Deze vacature bestaat niet (meer)');

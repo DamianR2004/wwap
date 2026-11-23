@@ -17,8 +17,11 @@ const fotoSets = (image) => ({
 });
 
 export async function load() {
-  // Gesorteerd op afdeling (directie eerst), daarbinnen op naam
-  const leden = await sanity.fetch(`
+  // Is Sanity onbereikbaar (bijv. geen internet), dan toont de pagina een melding i.p.v. een 500
+  let leden;
+  try {
+    // Gesorteerd op afdeling (directie eerst), daarbinnen op naam
+    leden = await sanity.fetch(`
     *[_type == "teamMember"] | order(department asc, name asc) {
       _id,
       name,
@@ -29,6 +32,10 @@ export async function load() {
       image
     }
   `);
+  } catch (fout) {
+    console.error('Teamleden ophalen uit Sanity mislukt:', fout);
+    return { groepen: [], onbereikbaar: true };
+  }
 
   // Groeperen per afdeling, in de volgorde van de afdelingenlijst
   const groepen = Object.entries(afdelingen)

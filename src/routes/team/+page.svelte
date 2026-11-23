@@ -32,6 +32,12 @@
   </p>
 </section>
 
+{#if data.onbereikbaar}
+  <section>
+    <p>Het team kan op dit moment niet worden geladen. Probeer het later opnieuw.</p>
+  </section>
+{/if}
+
 {#each data.groepen as groep (groep.naam)}
   <section>
     <h2>{groep.naam}</h2>
